@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body{
+            width: 100vw;
+            height: 100vh;
+        }
+        #container {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+    <script type="text/javascript">
+        window._AMapSecurityConfig = {
+            securityJsCode: 'cc08f998d02dd99905d7d043d6794447',
+        }
+    </script>
+    <script type="text/javascript"
+            src="https://webapi.amap.com/maps?v=2.0&key=0b661601028865fffb7af5378ac1b4b4"></script>
+</head>
+<body>
+<div id="container"></div>
+<script>
+    var positions = [[118.1726175193129, 39.676024]];
+    var map = new AMap.Map("container", {
+        resizeEnable: true,
+        center: positions[0],
+        zoom: 17,
+    });
+
+    var marker = new AMap.Marker({
+        position: map.getCenter(),
+        icon: '//a.amap.com/jsapi_demos/static/demo-center/icons/poi-marker-default.png',
+        offset: new AMap.Pixel(-13, -30),
+        // 设置是否可以拖拽
+        draggable: false,
+        cursor: 'move',
+        // 设置拖拽效果
+        raiseOnDrag: true
+    });
+    marker.setMap(map);
+
+    var clickHandler = function (e) {
+        marker.setMap(null);
+        marker = new AMap.Marker({
+            position: e.lnglat,
+            icon: '//a.amap.com/jsapi_demos/static/demo-center/icons/poi-marker-default.png',
+            offset: new AMap.Pixel(-13, -30),
+            // 设置是否可以拖拽
+            draggable: false,
+            cursor: 'move',
+            // 设置拖拽效果
+            raiseOnDrag: true
+        });
+        marker.setMap(map);
+        console.log(e)
+        // $('input[name=longitude]').val(e.lnglat.lng);
+        // $('input[name=latitude]').val(e.lnglat.lat);
+    };
+
+    map.on('click', clickHandler);
+</script>
+</body>
+</html>

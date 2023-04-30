@@ -1,0 +1,19 @@
+
+### GET request with a header
+GET http://127.0.0.1:3434/api/admin/getAllUsers?page=1&size=10
+Authorization: Bearer {{token}}
+###
+
+
+
+
+### Send POST request with json body
+POST http://127.0.0.1:3434/api/user/register
+Content-Type: application/json
+
+{
+  "phone": 17692455651,
+  "password": "123456"
+}
+
+### Send POST request with body as parameters
